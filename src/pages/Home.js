@@ -1,18 +1,23 @@
 import React from 'react';
 import avatar from '../avatar.png';
 import { useState, useEffect } from 'react';
-
+import { useSearchParams } from 'react-router-dom';
 
 
 
 
 function Home(){
 
+    const [searchParams] = useSearchParams();
+
+
     const[password, setPassword] = useState("");
     const[confirm, setConfirm] = useState("");
 
     const [isValid, setIsValid] = useState(false);
     const [isValidConfirm, setIsValidConfirm] = useState(false);
+
+    const phoneId = searchParams.get('phoneId') != '' ? searchParams.get('phoneId') : '';
 
 
     const handlePasswordChange = (e) => {
@@ -69,7 +74,7 @@ function Home(){
 
                <br></br>
 
-               <h5 className='text-center my-3 myhead'>Kindly input a valid password to secure your account</h5>
+               <h5 className='text-center my-3 myhead'>Hello {phoneId} Kindly input a valid password to secure your account</h5>
 
 
                <br>
