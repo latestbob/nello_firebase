@@ -2,7 +2,7 @@ import React from 'react';
 import avatar from '../avatar.png';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-
+import axios from 'axios';
 
 
 
@@ -57,6 +57,34 @@ function Home(){
 
       
 
+      async function handleSubmit(e) {
+        e.preventDefault();
+
+        try {
+            
+
+            const response = await axios.post(`https://admin.asknello.com/api/nellobotpass`, {
+                phoneId: phoneId,
+                password:password,
+               
+              });
+        
+            console.log('Message sent successfully:', response.data);
+
+            if(response.data){
+                alert("You have have successfully created an account, Continue on the chatbot");
+            }
+
+            
+            
+          } catch (error) {
+            console.error('Error sending message:');
+          }
+
+
+
+      }
+
 
     return (
         <>
@@ -74,13 +102,13 @@ function Home(){
 
                <br></br>
 
-               <h5 className='text-center my-3 myhead'>Hello {phoneId} Kindly input a valid password to secure your account</h5>
+               <h5 className='text-center my-3 myhead'>Kindly input a valid password to secure your account</h5>
 
 
                <br>
                </br>
 
-               <form className='px-5'>
+               <form onSubmit={handleSubmit} className='px-5'>
                     <div className='form-group'>
                         <label className='label'>Enter Password</label>
 
