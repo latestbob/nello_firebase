@@ -58,7 +58,7 @@ npm install
 ```
 
 Note we are using mongo official image to deploy our mongodb instance, but
-should you decide you you Atlas, kindly replace MONGO_URI to the url of your mongodb cluster
+should you decide to use Atlas, kindly replace MONGO_URI to the url of your mongodb cluster
 
 
 ### Frontend
@@ -234,9 +234,9 @@ CMD ["nginx", "-g", "daemon off;"]
 
     Docker Compose simplifies the deployment process by allowing you to manage and run multi-container Docker applications with ease.
 
-    ```yaml
+```yaml
 
-    version: '3.8'
+version: '3.8'
 
 services:
   backend:
@@ -316,7 +316,7 @@ networks:
     Frontend : http://localhost:3000
     Backend : http://localhost:5000
 
-    
+
 
 
 
