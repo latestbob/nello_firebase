@@ -49,11 +49,15 @@ npm install
 
 3. Create a .env file in the root of backend directory and add the following variables:
 
+```plaintext
+
     PORT=5000
     MONGO_URI=mongodb://mongo:27017/store
     TEST_PORT=5000
 
-Note we are using mongo official image to deploy our mongodb instance, b
+```
+
+Note we are using mongo official image to deploy our mongodb instance, but
 should you decide you you Atlas, kindly replace MONGO_URL to the url of your mongodb cluster
 
 
