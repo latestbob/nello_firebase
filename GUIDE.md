@@ -209,5 +209,24 @@ EXPOSE 3000
 # Run nginx
 CMD ["nginx", "-g", "daemon off;"]
 
-````
+```
+
+### Nginx config file to serve the frontend 
+    Create a nginx.conf file in the frontend directory if not existing
+
+```nginx
+
+    server {
+    listen 3000;
+
+    root /usr/share/nginx/html;
+    index index.html;
+
+    location / {
+        try_files $uri /index.html;
+    }
+}
+
+```
+
 
