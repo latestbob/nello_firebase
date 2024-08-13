@@ -21,9 +21,11 @@ FROM nginx:alpine
 
 # Copy the build output to replace the default nginx contents.
 COPY --from=0 /app/build /usr/share/nginx/html
+# copy  nginx config
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Expose port 80
-EXPOSE 80
+EXPOSE 8080
 
 # Run nginx
 CMD ["nginx", "-g", "daemon off;"]
