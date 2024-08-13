@@ -146,8 +146,68 @@ There are many options available for deploying a MERN stack application. Some po
 ### Backend (Node.js/Express) Dockerfile:
     Create a 'Dockerfile' in your backend directory if not existing
 
+```Dockerfile
+
+   # Use an official Node.js runtime as a parent image
+FROM node:16-alpine
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy package.json and package-lock.json to the working directory
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the rest of the application files to the working directory
+COPY . .
+
+# Expose the port the app runs on
+EXPOSE 5000
+
+# Define the command to run the app
+CMD ["node", "app.js"]
+
+
 ```
 
+### Frontend (React js) Dockerfile:
+    Create a 'Dockerfile' in your frontend directory if not existing
 
+```Dockerfile
 
+# Use an official Node runtime as a parent image
+FROM node:16-alpine
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Copy the package.json and package-lock.json files to the working directory
+COPY package*.json ./
+
+# Install the dependencies
+RUN npm install
+
+# Copy the rest of the application code to the working directory
+COPY . .
+
+# Build the React app for production
+RUN npm run build
+
+# Stage 2 - the production environment
+FROM nginx:alpine
+
+# Copy the build output to replace the default nginx contents.
+COPY --from=0 /app/build /usr/share/nginx/html
+# copy  nginx config
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose port 80
+EXPOSE 3000
+
+# Run nginx
+CMD ["nginx", "-g", "daemon off;"]
+
+````
 
