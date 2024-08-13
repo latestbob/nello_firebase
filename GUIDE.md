@@ -118,12 +118,12 @@ To run tests locally with a MongoDB connection,  follow these steps:
 ```
 4. **Importing Seed Data**
 
-Importing Product Seed to your mongodb database using Compass, Visit https://www.mongodb.com/try/download/compass to download Compass if not installed.
+    Importing Product Seed to your mongodb database using Compass, Visit https://www.mongodb.com/try/download/compass to download Compass if not installed.
 
 
 
 
- Import store.products.json file into the store database using Compass
+ Import **store.products.json**  file found in the project root into the store database using Compass
 
 
 Run the test
@@ -133,7 +133,7 @@ Run the test
    npm test
 
 ```
-
+This should run the test case located in "backend/_test_/app.test.js"
 
 
 
