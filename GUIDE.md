@@ -229,4 +229,97 @@ CMD ["nginx", "-g", "daemon off;"]
 
 ```
 
+### Docker Compose Configuration
+    Create a docker-compose.yml in the project root directory if not existing
+
+    Docker Compose simplifies the deployment process by allowing you to manage and run multi-container Docker applications with ease.
+
+    ```yaml
+
+    version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    env_file:
+      - ./backend/.env
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+    depends_on:
+      - mongo
+
+  frontend:
+    build:
+      context: ./frontend
+    
+    env_file:
+      - ./frontend/.env
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+```
+
+
+### Replace MONGO_URI
+
+    In the backend .env, change the MONGO_URI to the below
+
+```plaintext
+
+
+    MONGO_URI=mongodb://mongo:27017/store
+  
+```
+
+    Why ? , This is because we are making use of the official mongodb docker image, and we need
+    to point to mongo and not localhost.
+
+
+### RUN DOCKER COMPOSE
+
+```bash
+
+    docker-compose up --build
+
+```
+
+    The above should build containers for frontend, backend and mongodb
+
+### Importing Seed Data**
+
+    Importing Product Seed to your mongodb database using Compass, Visit https://www.mongodb.com/try/download/compass to download Compass if not installed.
+
+
+
+
+ Connect mongodb running container to Compass and import **store.products.json**  file found in the project root into the store database.
+
+
+### Accessing the Application**
+
+    Frontend : http://localhost:3000
+    Backend : http://localhost:5000
+
+    
+
+
+
+
+
 
