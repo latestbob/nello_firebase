@@ -136,6 +136,17 @@ Run the test
 This should run the test case located in "backend/_test_/app.test.js"
 
 
+## Deployment Guide: Deploying MERN Stack with Docker Compose
+
+There are many options available for deploying a MERN stack application. Some popular methods include using cloud platforms like AWS, Heroku, DigitalOcean, or container orchestration tools like Kubernetes. However, in this guide, we will focus on deploying a MERN stack using Docker Compose. Docker Compose simplifies the deployment process by allowing you to manage and run multi-container Docker applications with ease.
+
+
+## Deployment Steps
+
+### Backend (Node.js/Express) Dockerfile:
+    Create a 'Dockerfile' in your backend directory if not existing
+
+```
 
 
 
